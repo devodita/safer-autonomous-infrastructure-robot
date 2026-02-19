@@ -1,0 +1,28 @@
+# ROS build artifacts
+devel/
+build/
+logs/
+*.pyc
+__pycache__/
+
+# Catkin
+.catkin_workspace
+
+# Python
+*.egg-info/
+dist/
+*.pyo
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Credentials / secrets
+*.env
+comms_secrets.yaml
