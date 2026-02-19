@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package format="2">
+  <n>safer_bringup</n>
+  <version>0.1.0</version>
+  <description>
+    Master bringup package for the SAFER robot.
+    Contains the top-level launch files, URDF, and shared config.
+  </description>
+
+  <maintainer email="safer@robot.local">SAFER Team</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>safer_msgs</depend>
+  <depend>safer_perception</depend>
+  <depend>safer_decision</depend>
+  <depend>safer_navigation</depend>
+  <depend>safer_actuation</depend>
+  <depend>safer_comms</depend>
+
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>xacro</exec_depend>
+
+  <export></export>
+</package>
