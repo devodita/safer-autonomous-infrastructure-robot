@@ -1,0 +1,12 @@
+# patrol_params.yaml
+patrol_controller:
+  loop_patrol:        true
+  goal_tolerance:     0.30     # metres
+  wait_at_waypoint:   2.0      # seconds
+  frame_id:           "map"
+
+  waypoints:
+    - {x:  0.0,  y:  0.0,  yaw: 0.0}
+    - {x:  5.0,  y:  0.0,  yaw: 1.57}
+    - {x:  5.0,  y:  5.0,  yaw: 3.14}
+    - {x:  0.0,  y:  5.0,  yaw: -1.57}
