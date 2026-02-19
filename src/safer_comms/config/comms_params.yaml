@@ -1,0 +1,16 @@
+# comms_params.yaml
+
+mqtt_alert_bridge:
+  broker_host:  "localhost"
+  broker_port:  1883
+  robot_id:     "safer_robot_01"
+  keepalive:    60
+  qos:          1
+  sim_mode:     false
+
+dashboard_publisher:
+  dashboard_endpoint: "http://localhost:8080/api/telemetry"
+  robot_id:           "safer_robot_01"
+  publish_rate:       1.0      # Hz
+  http_timeout:       2.0      # seconds
+  sim_mode:           false
