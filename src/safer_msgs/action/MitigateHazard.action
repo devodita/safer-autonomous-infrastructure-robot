@@ -1,0 +1,14 @@
+# Goal
+uint8 hazard_class
+geometry_msgs/Point hazard_position
+float32 risk_score
+---
+# Result
+bool success
+string outcome_message
+float32 time_to_mitigate
+---
+# Feedback
+float32 progress          # [0.0, 1.0]
+string current_step
+geometry_msgs/Point robot_position

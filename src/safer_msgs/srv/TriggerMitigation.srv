@@ -1,0 +1,9 @@
+# Request
+uint8 hazard_class
+float32 risk_score
+geometry_msgs/Point hazard_position
+---
+# Response
+bool accepted
+string mitigation_action
+string message

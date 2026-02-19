@@ -1,0 +1,8 @@
+# Request — pass all currently active hazard detections
+safer_msgs/HazardDetection[] hazards
+geometry_msgs/Twist current_velocity
+---
+# Response
+float32 risk_score
+uint8 recommended_mode
+string reasoning

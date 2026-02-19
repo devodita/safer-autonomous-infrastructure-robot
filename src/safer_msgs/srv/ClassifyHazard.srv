@@ -1,0 +1,9 @@
+# Request
+sensor_msgs/Image rgb_image
+sensor_msgs/Image depth_image
+---
+# Response
+uint8 hazard_class
+string hazard_label
+float32 confidence
+geometry_msgs/Point estimated_position
