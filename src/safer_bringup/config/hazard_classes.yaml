@@ -1,0 +1,50 @@
+hazards:
+
+  0:   # UNKNOWN
+    label: "UNKNOWN"
+    severity: 0
+    description: "Unclassified or low-confidence hazard"
+    default_alert_level: 0
+    estop_override: false
+
+  1:   # OPEN_MANHOLE
+    label: "OPEN_MANHOLE"
+    severity: 3
+    description: "Open or uncovered manhole"
+    default_alert_level: 3
+    estop_override: true
+
+  2:   # OBSTACLE_STATIC
+    label: "OBSTACLE_STATIC"
+    severity: 2
+    description: "Static obstacle blocking path"
+    default_alert_level: 2
+    estop_override: false
+
+  3:   # OBSTACLE_DYNAMIC
+    label: "OBSTACLE_DYNAMIC"
+    severity: 2
+    description: "Moving obstacle in proximity"
+    default_alert_level: 2
+    estop_override: false
+
+  4:   # PEDESTRIAN_HIGH_DENSITY
+    label: "PEDESTRIAN_HIGH_DENSITY"
+    severity: 2
+    description: "High pedestrian density detected"
+    default_alert_level: 2
+    estop_override: false
+
+  5:   # WET_SURFACE
+    label: "WET_SURFACE"
+    severity: 1
+    description: "Slippery or wet road surface"
+    default_alert_level: 1
+    estop_override: false
+
+  6:   # CONSTRUCTION_ZONE
+    label: "CONSTRUCTION_ZONE"
+    severity: 1
+    description: "Active construction or temporary hazard"
+    default_alert_level: 1
+    estop_override: false
