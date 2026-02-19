@@ -1,0 +1,8 @@
+# mpc_params.yaml
+mpc_trajectory_tracker:
+  horizon:        10       # Prediction horizon steps
+  dt:             0.1      # Seconds per horizon step
+  k_linear:       0.8      # Proportional gain — linear velocity
+  k_angular:      1.5      # Proportional gain — angular velocity
+  goal_tolerance: 0.20     # Metres — distance to consider goal reached
+  control_rate:   10.0     # Hz
