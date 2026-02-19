@@ -1,0 +1,41 @@
+<launch>
+  <!-- ============================================================
+       safer_perception — Hazard Detection Launch
+       ============================================================ -->
+
+  <arg name="model_path"  default=""/>
+  <arg name="sim_mode"    default="false"/>
+
+  <!-- C++ Hazard Detector (depth + ultrasonic) -->
+  <node name="hazard_detector_node"
+        pkg="safer_perception"
+        type="hazard_detector_node"
+        output="screen"
+        respawn="true"
+        respawn_delay="3.0">
+    <rosparam file="$(find safer_perception)/config/perception_params.yaml" command="load"/>
+    <param name="sim_mode" value="$(arg sim_mode)"/>
+  </node>
+
+  <!-- Python ML Hazard Classifier -->
+  <node name="hazard_classifier"
+        pkg="safer_perception"
+        type="hazard_classifier.py"
+        output="screen"
+        respawn="true"
+        respawn_delay="3.0">
+    <rosparam file="$(find safer_perception)/config/perception_params.yaml" command="load"/>
+    <param name="model_path" value="$(arg model_path)"/>
+  </node>
+
+  <!-- Pedestrian Density Estimator -->
+  <node name="pedestrian_density_estimator"
+        pkg="safer_perception"
+        type="pedestrian_density_estimator.py"
+        output="screen"
+        respawn="true"
+        respawn_delay="3.0">
+    <rosparam file="$(find safer_perception)/config/perception_params.yaml" command="load"/>
+  </node>
+
+</launch>
