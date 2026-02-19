@@ -1,0 +1,38 @@
+# perception_params.yaml
+
+# ── Camera Intrinsics ──────────────────────────────────────────────────────────
+camera:
+  fx: 525.0
+  fy: 525.0
+  cx: 319.5
+  cy: 239.5
+
+# ── Depth Processor ───────────────────────────────────────────────────────────
+depth:
+  drop_threshold:       0.25   # metres — min drop to flag as anomaly
+  min_anomaly_width_px: 20.0
+  max_anomaly_width_px: 200.0
+
+# ── Ultrasonic Filter ─────────────────────────────────────────────────────────
+ultrasonic:
+  window_size:          5
+  min_range:            0.02   # metres
+  max_range:            4.0    # metres
+  obstacle_threshold:   0.50   # metres — below this = obstacle hazard
+
+# ── Hazard Detector Node ──────────────────────────────────────────────────────
+hazard_detector_node:
+  publish_rate:   10.0         # Hz
+  base_frame:     "base_link"
+  camera_frame:   "camera_depth_frame"
+
+# ── Hazard Classifier ─────────────────────────────────────────────────────────
+hazard_classifier:
+  confidence_threshold: 0.60
+  model_path: ""               # Path to ONNX model file, empty = pass-through
+
+# ── Pedestrian Density Estimator ──────────────────────────────────────────────
+pedestrian_density_estimator:
+  high_density_threshold: 5    # Pedestrian count above this triggers hazard
+  publish_rate:           2.0  # Hz
+  min_contour_area:       800  # pixels² — minimum blob to count as person
