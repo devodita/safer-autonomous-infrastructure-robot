@@ -1,0 +1,44 @@
+# actuation_params.yaml
+# ----------------------
+# Configuration for all safer_actuation nodes.
+# All values can be overridden at launch time via <param> or rosparam.
+
+# ── Actuation Manager ──────────────────────────────────────────────────────────
+actuation_manager_node:
+  # Speed limits per operational mode (m/s)
+  max_speed_normal:     1.5
+  max_speed_caution:    0.8
+  max_speed_restricted: 0.3
+
+  # Below this linear speed (m/s) the brake is auto-engaged
+  brake_threshold: 0.05
+
+  # If no ActuatorCommand arrives within this window, hold position (seconds)
+  cmd_timeout: 0.5
+
+# ── Motor Controller ───────────────────────────────────────────────────────────
+motor_controller:
+  wheel_base:   0.45        # Distance between left and right wheels (metres)
+  max_speed:    1.5         # Maximum wheel speed for PWM scaling (m/s)
+  serial_port:  /dev/ttyUSB0
+  baud_rate:    115200
+  sim_mode:     false
+
+# ── Brake Controller ───────────────────────────────────────────────────────────
+brake_controller:
+  brake_gpio_pin: 18        # BCM GPIO pin number
+  engage_high:    true      # true  = HIGH signal engages brake
+                            # false = LOW  signal engages brake
+  sim_mode: false
+
+# ── Alert Peripheral Controller ────────────────────────────────────────────────
+alert_peripheral_controller:
+  led_gpio_pin:  23         # BCM GPIO pin for LED
+  horn_gpio_pin: 24         # BCM GPIO pin for horn relay
+  sim_mode: false
+
+# ── Alert Level Definitions (informational — used by actuation_manager_node) ───
+# 0: all off
+# 1: steady amber LED
+# 2: flashing amber LED + short horn beep
+# 3: strobe red LED + continuous horn (emergency)

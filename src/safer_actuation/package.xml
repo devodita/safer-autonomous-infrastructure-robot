@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>safer_actuation</name>
+  <version>0.1.0</version>
+  <description>
+    Actuator command interface for the SAFER robot. Receives high-level
+    ActuatorCommand messages from the decision and navigation layers and
+    translates them into low-level hardware commands (PWM, CAN, serial)
+    for the motor controllers, braking system, and alert peripherals.
+  </description>
+
+  <maintainer email="safer@robot.local">SAFER Team</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- ROS core -->
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+
+  <!-- Custom messages -->
+  <depend>safer_msgs</depend>
+
+  <!-- Serial / hardware bridge -->
+  <exec_depend>rosserial_python</exec_depend>
+
+  <export></export>
+</package>

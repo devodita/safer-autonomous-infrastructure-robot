@@ -1,0 +1,59 @@
+<launch>
+  <!-- ============================================================
+       safer_actuation — Actuator Command Interface
+       Launches all hardware-facing nodes for the SAFER robot.
+       
+       Args:
+         sim_mode   : set true to suppress GPIO/serial output (default: false)
+         serial_port: STM32 motor bridge serial device
+       ============================================================ -->
+
+  <arg name="sim_mode"    default="false"/>
+  <arg name="serial_port" default="/dev/ttyUSB0"/>
+
+  <!-- Actuation Manager: receives ActuatorCommand, dispatches sub-commands -->
+  <node name="actuation_manager_node"
+        pkg="safer_actuation"
+        type="actuation_manager_node.py"
+        output="screen"
+        respawn="true"
+        respawn_delay="3.0">
+    <rosparam file="$(find safer_actuation)/config/actuation_params.yaml" command="load"/>
+    <param name="sim_mode" value="$(arg sim_mode)"/>
+  </node>
+
+  <!-- Motor Controller: Twist → serial PWM frame → STM32 -->
+  <node name="motor_controller"
+        pkg="safer_actuation"
+        type="motor_controller.py"
+        output="screen"
+        respawn="true"
+        respawn_delay="3.0">
+    <rosparam file="$(find safer_actuation)/config/actuation_params.yaml" command="load"/>
+    <param name="sim_mode"    value="$(arg sim_mode)"/>
+    <param name="serial_port" value="$(arg serial_port)"/>
+  </node>
+
+  <!-- Brake Controller: Float32 force → GPIO relay -->
+  <node name="brake_controller"
+        pkg="safer_actuation"
+        type="brake_controller.py"
+        output="screen"
+        respawn="true"
+        respawn_delay="3.0">
+    <rosparam file="$(find safer_actuation)/config/actuation_params.yaml" command="load"/>
+    <param name="sim_mode" value="$(arg sim_mode)"/>
+  </node>
+
+  <!-- Alert Peripheral Controller: UInt8 level → LEDs + horn -->
+  <node name="alert_peripheral_controller"
+        pkg="safer_actuation"
+        type="alert_peripheral_controller.py"
+        output="screen"
+        respawn="true"
+        respawn_delay="3.0">
+    <rosparam file="$(find safer_actuation)/config/actuation_params.yaml" command="load"/>
+    <param name="sim_mode" value="$(arg sim_mode)"/>
+  </node>
+
+</launch>
