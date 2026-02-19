@@ -1,0 +1,48 @@
+<launch>
+  <arg name="use_mpc"      default="true"/>
+  <arg name="loop_patrol"  default="true"/>
+
+  <!-- Patrol Controller -->
+  <node name="patrol_controller"
+        pkg="safer_navigation"
+        type="patrol_controller.py"
+        output="screen"
+        respawn="true"
+        respawn_delay="3.0">
+    <rosparam file="$(find safer_navigation)/config/patrol_params.yaml"  command="load"/>
+  </node>
+
+  <!-- MPC Trajectory Tracker -->
+  <node if="$(arg use_mpc)"
+        name="mpc_trajectory_tracker"
+        pkg="safer_navigation"
+        type="mpc_trajectory_tracker.py"
+        output="screen"
+        respawn="true"
+        respawn_delay="3.0">
+    <rosparam file="$(find safer_navigation)/config/mpc_params.yaml" command="load"/>
+  </node>
+
+  <!-- Costmap Hazard Layer -->
+  <node name="costmap_hazard_layer"
+        pkg="safer_navigation"
+        type="costmap_hazard_layer.py"
+        output="screen"
+        respawn="true"
+        respawn_delay="3.0">
+    <rosparam file="$(find safer_navigation)/config/costmap_common.yaml" command="load"/>
+  </node>
+
+  <!-- move_base -->
+  <node name="move_base"
+        pkg="move_base"
+        type="move_base"
+        respawn="false"
+        output="screen">
+    <rosparam file="$(find safer_navigation)/config/costmap_common.yaml"
+              command="load" ns="global_costmap"/>
+    <rosparam file="$(find safer_navigation)/config/costmap_common.yaml"
+              command="load" ns="local_costmap"/>
+  </node>
+
+</launch>
