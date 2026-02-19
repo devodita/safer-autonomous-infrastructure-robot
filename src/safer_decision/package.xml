@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="2">
+  <n>safer_decision</n>
+  <version>0.1.0</version>
+  <description>
+    Risk scoring and finite state machine for the SAFER robot.
+    Consumes hazard detections and produces operational mode commands.
+  </description>
+
+  <maintainer email="safer@robot.local">SAFER Team</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>safer_msgs</depend>
+
+  <export></export>
+</package>
