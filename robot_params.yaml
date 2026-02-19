@@ -1,0 +1,25 @@
+# robot_params.yaml
+# Global robot physical parameters shared across packages.
+
+robot:
+  name: "safer_robot"
+  model: "SAFER-v1"
+
+  # Chassis
+  wheel_base:     0.45    # m — distance between left and right wheels
+  wheel_radius:   0.085   # m
+  track_width:    0.45    # m
+  robot_radius:   0.35    # m — bounding circle for collision checks
+
+  # Speed limits
+  max_linear_vel:  1.5    # m/s
+  max_angular_vel: 1.2    # rad/s
+  max_accel:       0.8    # m/s²
+
+  # Sensor mount heights above ground
+  lidar_height:      0.30  # m
+  depth_cam_height:  0.40  # m
+  ultrasonic_height: 0.15  # m
+
+  # Payload
+  max_payload_kg: 10.0
