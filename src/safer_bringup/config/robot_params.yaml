@@ -1,0 +1,42 @@
+robot:
+  name: safer_robot
+  base_type: differential_drive
+
+  dimensions:
+    length: 0.65        # meters
+    width: 0.50
+    height: 0.55
+
+  motion_limits:
+    max_linear_speed: 1.5        # m/s (must match risk_scorer.py)
+    max_angular_speed: 1.2       # rad/s (used in RiskPlannerNode)
+
+  safety:
+    emergency_stop_supported: true
+    brake_threshold: 0.05        # m/s (from actuation_manager_node.py)
+    cmd_timeout: 0.5             # seconds
+
+sensors:
+  rgb_camera: true
+  depth_camera: true
+  ultrasonic:
+    enabled: true
+    count: 4
+  imu: true
+  wheel_encoders: true
+  gps: false
+
+actuation:
+  drive:
+    motor_control: true
+    brake_control: true
+
+  alerts:
+    levels_supported: [0, 1, 2, 3]
+    visual: true
+    audible: true
+
+operation:
+  default_mode: NORMAL
+  allow_manual_override: true
+  estop_latched: true
