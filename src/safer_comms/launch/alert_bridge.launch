@@ -1,0 +1,26 @@
+<launch>
+  <arg name="sim_mode"  default="false"/>
+  <arg name="robot_id"  default="safer_robot_01"/>
+
+  <node name="mqtt_alert_bridge"
+        pkg="safer_comms"
+        type="mqtt_alert_bridge.py"
+        output="screen"
+        respawn="true"
+        respawn_delay="5.0">
+    <rosparam file="$(find safer_comms)/config/comms_params.yaml" command="load"/>
+    <param name="sim_mode"  value="$(arg sim_mode)"/>
+    <param name="robot_id"  value="$(arg robot_id)"/>
+  </node>
+
+  <node name="dashboard_publisher"
+        pkg="safer_comms"
+        type="dashboard_publisher.py"
+        output="screen"
+        respawn="true"
+        respawn_delay="5.0">
+    <rosparam file="$(find safer_comms)/config/comms_params.yaml" command="load"/>
+    <param name="sim_mode"  value="$(arg sim_mode)"/>
+    <param name="robot_id"  value="$(arg robot_id)"/>
+  </node>
+</launch>
