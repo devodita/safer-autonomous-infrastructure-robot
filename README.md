@@ -56,6 +56,6 @@ Devodita Chakravarty
 IIT Kharagpur
 
 ## Contributing
-Feel free to contribute to this repository! If you have any suggestions or improvements, open an issue or submit a pull request to make this repo more informative.
+Note: this is an ongoing project. Feel free to contribute to this repository! If you have any suggestions or improvements, open an issue or submit a pull request to make this repo more informative.
 
 Happy coding!
