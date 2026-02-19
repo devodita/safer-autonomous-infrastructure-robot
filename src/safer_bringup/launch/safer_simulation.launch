@@ -1,0 +1,38 @@
+<launch>
+  <!-- ============================================================
+       SAFER Robot — Simulation Launch (Gazebo)
+       All hardware interfaces replaced with sim_mode=true.
+       ============================================================ -->
+
+  <arg name="world" default="$(find safer_bringup)/config/safer_world.world"/>
+  <arg name="gui"   default="true"/>
+
+  <!-- Gazebo -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world)"/>
+    <arg name="gui"        value="$(arg gui)"/>
+    <arg name="paused"     value="false"/>
+  </include>
+
+  <!-- Spawn URDF -->
+  <param name="robot_description"
+         command="$(find xacro)/xacro
+                  $(find safer_bringup)/urdf/safer_robot.urdf.xacro"/>
+
+  <node name="spawn_robot"
+        pkg="gazebo_ros"
+        type="spawn_model"
+        args="-urdf -model safer_robot -param robot_description -x 0 -y 0 -z 0.1"
+        output="screen"/>
+
+  <node name="robot_state_publisher"
+        pkg="robot_state_publisher"
+        type="robot_state_publisher"
+        output="screen"/>
+
+  <!-- All packages in sim_mode -->
+  <include file="$(find safer_bringup)/launch/safer_robot.launch">
+    <arg name="sim_mode" value="true"/>
+  </include>
+
+</launch>

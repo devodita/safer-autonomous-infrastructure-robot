@@ -1,0 +1,51 @@
+<launch>
+  <!-- ============================================================
+       SAFER Robot — Master Bringup Launch
+       Starts all subsystems in dependency order.
+       ============================================================ -->
+
+  <arg name="sim_mode"    default="false"/>
+  <arg name="robot_id"    default="safer_robot_01"/>
+  <arg name="serial_port" default="/dev/ttyUSB0"/>
+  <arg name="model_path"  default=""/>
+
+  <!-- ── Robot Description ──────────────────────────────────────── -->
+  <param name="robot_description"
+         command="$(find xacro)/xacro
+                  $(find safer_bringup)/urdf/safer_robot.urdf.xacro"/>
+
+  <node name="robot_state_publisher"
+        pkg="robot_state_publisher"
+        type="robot_state_publisher"
+        output="screen"/>
+
+  <node name="joint_state_publisher"
+        pkg="joint_state_publisher"
+        type="joint_state_publisher"
+        output="screen"/>
+
+  <!-- ── Perception ─────────────────────────────────────────────── -->
+  <include file="$(find safer_perception)/launch/hazard_detection.launch">
+    <arg name="sim_mode"   value="$(arg sim_mode)"/>
+    <arg name="model_path" value="$(arg model_path)"/>
+  </include>
+
+  <!-- ── Decision ───────────────────────────────────────────────── -->
+  <include file="$(find safer_decision)/launch/risk_planner.launch"/>
+
+  <!-- ── Navigation ─────────────────────────────────────────────── -->
+  <include file="$(find safer_navigation)/launch/autonomous_nav.launch"/>
+
+  <!-- ── Actuation ──────────────────────────────────────────────── -->
+  <include file="$(find safer_actuation)/launch/actuation.launch">
+    <arg name="sim_mode"    value="$(arg sim_mode)"/>
+    <arg name="serial_port" value="$(arg serial_port)"/>
+  </include>
+
+  <!-- ── Communications ─────────────────────────────────────────── -->
+  <include file="$(find safer_comms)/launch/alert_bridge.launch">
+    <arg name="sim_mode" value="$(arg sim_mode)"/>
+    <arg name="robot_id" value="$(arg robot_id)"/>
+  </include>
+
+</launch>
