@@ -1,0 +1,18 @@
+<launch>
+  <arg name="thresholds_file"
+       default="$(find safer_decision)/config/risk_thresholds.yaml"/>
+  <arg name="hysteresis_duration" default="2.0"/>
+  <arg name="update_rate"         default="5.0"/>
+
+  <node name="risk_planner_node"
+        pkg="safer_decision"
+        type="risk_planner_node.py"
+        output="screen"
+        respawn="true"
+        respawn_delay="3.0">
+    <param name="thresholds_file"     value="$(arg thresholds_file)"/>
+    <param name="hysteresis_duration" value="$(arg hysteresis_duration)"/>
+    <param name="update_rate"         value="$(arg update_rate)"/>
+    <rosparam file="$(find safer_decision)/config/risk_thresholds.yaml" command="load"/>
+  </node>
+</launch>
