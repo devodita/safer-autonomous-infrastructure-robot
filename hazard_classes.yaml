@@ -1,0 +1,44 @@
+# hazard_classes.yaml
+# Canonical hazard taxonomy used by perception, decision, and comms packages.
+
+hazard_classes:
+  - id: 0
+    name: "UNKNOWN"
+    severity: 0
+    description: "Unclassified or uncertain hazard"
+
+  - id: 1
+    name: "OPEN_MANHOLE"
+    severity: 3
+    description: "Uncovered manhole presenting fall risk"
+
+  - id: 2
+    name: "OBSTACLE_STATIC"
+    severity: 2
+    description: "Stationary physical obstacle blocking path"
+
+  - id: 3
+    name: "OBSTACLE_DYNAMIC"
+    severity: 3
+    description: "Moving obstacle (vehicle, cyclist)"
+
+  - id: 4
+    name: "PEDESTRIAN_HIGH_DENSITY"
+    severity: 2
+    description: "High pedestrian density requiring reduced speed"
+
+  - id: 5
+    name: "WET_SURFACE"
+    severity: 1
+    description: "Wet or slippery surface — reduce speed"
+
+  - id: 6
+    name: "CONSTRUCTION_ZONE"
+    severity: 2
+    description: "Active construction area"
+
+# Severity scale:
+#   0 — informational only
+#   1 — caution (reduce speed)
+#   2 — restricted (slow + alert)
+#   3 — emergency stop
