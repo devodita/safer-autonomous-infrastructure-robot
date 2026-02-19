@@ -1,0 +1,28 @@
+# risk_thresholds.yaml
+# Tuning parameters for RiskScorer.
+
+# ── Composite risk score weights (must sum to 1.0) ────────────────────────────
+weight_proximity: 0.40
+weight_severity:  0.35
+weight_density:   0.15
+weight_velocity:  0.10
+
+# ── Proximity danger zones (metres from robot centre) ────────────────────────
+proximity_critical: 0.5    # score = 1.0
+proximity_high:     1.5    # score = 0.75
+proximity_medium:   3.0    # score = 0.40
+                           # beyond medium → score = 0.10
+
+# ── Mode transition thresholds (on composite risk score [0, 1]) ───────────────
+threshold_caution:    0.30
+threshold_restricted: 0.55
+threshold_estop:      0.80
+
+# ── Pedestrian density ────────────────────────────────────────────────────────
+pedestrian_density_max: 10   # Count at which density_risk = 1.0
+
+# ── FSM hysteresis ────────────────────────────────────────────────────────────
+hysteresis_duration: 2.0     # Seconds before stepping DOWN a mode
+
+# ── Hazard expiry ─────────────────────────────────────────────────────────────
+hazard_timeout: 2.0          # Seconds without update before a hazard is dropped
